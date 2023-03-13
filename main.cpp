@@ -40,7 +40,7 @@ void lecture_fichier_prenoms(set<std::string>& ens)
 
 ////////////////////////////////////////////////////////////////////////////////
 int main()
-{
+{/*
    // initialisation du générateur de nombres aléatoires
    srand(time(0));
 
@@ -72,7 +72,7 @@ int main()
       // appeler choisir_prenom(ens_prenom) pour choisir un prénom
    }
    fcor.close();
-
+   */
    // TODO
 
    return 0;

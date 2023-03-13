@@ -40,11 +40,9 @@ void Groupe :: insererPersonne(std::string nom){
 }
 
 void Groupe :: supprimerPersonne(int id){
-    LPersonne.remove(getPersonne(id));
+    //LPersonne.remove(getPersonne(id));
 }
 
 void Groupe :: suprimerPremierePersonne(){
     LPersonne.pop_front();
 }
-
-

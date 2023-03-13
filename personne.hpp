@@ -17,10 +17,11 @@ class Personne {
 
     public:
         Personne(std::string name);
-        std::string getName();
-        int getId();
-        Position getPosition();
+        std::string getName() const;
+        int getId() const;
+        Position getPosition()const;
         void afficherPersonne();
+    
 };
 
 #endif

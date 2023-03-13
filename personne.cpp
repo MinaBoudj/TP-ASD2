@@ -11,15 +11,15 @@ Personne :: Personne(string name){
     position.y = 0;
 }
 
-string Personne :: getName(){
+string Personne :: getName() const{
     return name;
 }
 
-int Personne :: getId(){
+int Personne :: getId() const{
     return identifiant;
 }
 
-Position Personne :: getPosition(){
+Position Personne :: getPosition() const{
     return position;
 }
 

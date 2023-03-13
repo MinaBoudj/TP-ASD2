@@ -7,6 +7,7 @@
 //SDA :List(Personne) est le type des Listes de type Personne 
 
 class Groupe {  
+    
     private : 
         std::string nom_groupe;
         std::string couleur;
@@ -30,6 +31,7 @@ class Groupe {
         void supprimerPersonne(int id); //supprime une personne à partir de son identifiant
         void suprimerPremierePersonne(); //supprime la premiere personne(leader)
         typedef std::list<Personne>::iterator iterator;
+        
 };
 
 #endif
