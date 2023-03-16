@@ -2,7 +2,7 @@
 #define PERSONNE_HPP
 #include <string>
 
-struct Position{
+struct Position{ 
     int x;
     int y;
 };

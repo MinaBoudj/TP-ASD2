@@ -18,15 +18,8 @@ Groupe :: ~Groupe(){
     cout << "fin" << endl;
 }
 
-Personne Groupe :: getPersonne(int id){
-   iterator it = LPersonne.begin();
-   bool trouver = false;
-   while(trouver && it != LPersonne.end()){
-        if((*it).getId() == id)
-            trouver = true;
-        it++;
-   }
-   return *it;
+Personne Groupe :: getPersonne(int id){ 
+    return mapPersonne.at(id);
 }
 
 Personne Groupe :: getleader(){
@@ -34,15 +27,19 @@ Personne Groupe :: getleader(){
     return *it;
 }
 
-void Groupe :: insererPersonne(std::string nom){
+void Groupe :: insererPersonne(std::string nom){   
     Personne p = Personne(nom);
     LPersonne.push_back(p);
+    mapPersonne.insert(pair<int,Personne>(p.getId(),p));
 }
 
-void Groupe :: supprimerPersonne(int id){
+void Groupe :: supprimerPersonne(int id){   
+    mapPersonne.erase(id);  //supprimer dans la map
+    //LPersonne.remove_if(getPersonne(id).getId()==id);
     //LPersonne.remove(getPersonne(id));
 }
 
-void Groupe :: suprimerPremierePersonne(){
-    LPersonne.pop_front();
+void Groupe :: suprimerPremierePersonne(){  
+    mapPersonne.erase(LPersonne.begin()->getId());  //supprimer dans la map 
+    LPersonne.pop_front();  //puis dans la liste
 }

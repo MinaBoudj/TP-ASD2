@@ -1,7 +1,7 @@
 #include "personne.hpp"
 #include<iostream>
 
-using namespace std;
+using namespace std; 
 
 Personne :: Personne(string name){
     name = name;

@@ -3,6 +3,7 @@
 
 #include "personne.hpp"
 #include<list>
+#include<map>
 
 //SDA :List(Personne) est le type des Listes de type Personne 
 
@@ -13,6 +14,7 @@ class Groupe {
         std::string couleur;
         int taille;
         std::list<Personne> LPersonne;
+        std::map<int, Personne> mapPersonne;   //la clé c'est l'id 
 
     public :
         Groupe(std::string nom, std::string couleur, int taille);   //création d'un groupe vide
