@@ -2,22 +2,34 @@
 #define GROUPE_HPP
 
 #include "personne.hpp"
+#include "couleur.hpp"
 #include<list>
-#include<map>
+#include<unordered_map>
 
 //SDA :List(Personne) est le type des Listes de type Personne 
+struct maillon{
+    Personne info;
+    maillon* suivant;
+    maillon* precedent;
+};
+
+struct LPersonne{
+    maillon* premier;
+    maillon* dernier;
+    int nb;
+};
 
 class Groupe {  
     
     private : 
         std::string nom_groupe;
-        std::string couleur;
+        Couleur couleur_;
         int taille;
-        std::list<Personne> LPersonne;
-        std::map<int, Personne> mapPersonne;   //la clé c'est l'id 
+        LPersonne LPersonne;
+        std::unordered_map<int, maillon*> mapPersonne;   //la clé c'est l'id 
 
     public :
-        Groupe(std::string nom, std::string couleur, int taille);   //création d'un groupe vide
+        Groupe(std::string nom, Couleur couleur, int taille);   //création d'un groupe vide
         ~Groupe();  //distruction du groupe
         int gettaille(); //retourne la taille de la liste
 
@@ -29,9 +41,14 @@ class Groupe {
          * précondition : la liste n'est pas vide */
         Personne getleader();
 
-        void insererPersonne(std::string nom);   //insere une personne avec son nom 
-        void supprimerPersonne(int id); //supprime une personne à partir de son identifiant
-        void suprimerPremierePersonne(); //supprime la premiere personne(leader)
+        //insere une personne avec son nom 
+        void insererPersonne(std::string nom);  
+
+        //supprime une personne à partir de son identifiant
+        void supprimerPersonne(int id); 
+
+        //supprime la premiere personne(leader)
+        void suprimerPremierePersonne();
         typedef std::list<Personne>::iterator iterator;
         
 };
