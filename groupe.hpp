@@ -13,7 +13,7 @@ struct maillon{
     maillon* precedent;
 };
 
-struct LPersonne{
+struct ListPersonne{
     maillon* premier;
     maillon* dernier;
     int nb;
@@ -25,7 +25,7 @@ class Groupe {
         std::string nom_groupe;
         Couleur couleur_;
         int taille;
-        LPersonne LPersonne;
+        ListPersonne LPersonne;
         std::unordered_map<int, maillon*> mapPersonne;   //la clé c'est l'id 
 
     public :

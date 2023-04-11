@@ -55,8 +55,8 @@ void Groupe :: supprimerPersonne(int id){
         cout << "Liste vide " << endl;
     else{ 
         if(LPersonne.nb == 1){ //si dans la liste y'a un seul maillon
-            LPersonne.dernier == nullptr;
-            LPersonne.premier == nullptr;
+            LPersonne.dernier = nullptr;
+            LPersonne.premier = nullptr;
             LPersonne.nb = 0;
             mapPersonne.erase(id);  //supprimer dans la map
         }else{
@@ -64,7 +64,7 @@ void Groupe :: supprimerPersonne(int id){
                 LPersonne.premier = LPersonne.premier->suivant;
             }else{
                 if(tmp->suivant == nullptr){//c'est la derniere personne dans la liste
-                    tmp->precedent->suivant == nullptr;
+                    tmp->precedent->suivant = nullptr;
                 }else{//une personne au milieu de la liste
                     tmp->precedent->suivant = tmp->suivant;
                     tmp->suivant->precedent = tmp->precedent;
@@ -78,9 +78,9 @@ void Groupe :: supprimerPersonne(int id){
 
 void Groupe :: suprimerPremierePersonne(){
     maillon* tmp = LPersonne.premier;
-    if(LPersonne.nb = 0)
+    if(LPersonne.nb == 0)
         cout << "ERREUR : Liste vide " << endl;
-    else if(LPersonne.nb = 1){  //si un seul maillon(premier = dernier)
+    else if(LPersonne.nb == 1){  //si un seul maillon(premier = dernier)
             tmp = LPersonne.premier;
             LPersonne.premier = nullptr;
             LPersonne.dernier = nullptr;
