@@ -1,6 +1,6 @@
 #include "cortege.hpp"
 #include<iostream>
-
+#include<algorithm>
 
 using namespace std;
 
@@ -22,14 +22,14 @@ void Cortege :: insert_Groupe(Groupe groupe){
 
 /// @brief suppression du groupe à partir de son nom
 /// @param nom_groupe 
-void Cortege ::delete_Groupe(std::string nom_groupe){
+/*void Cortege ::delete_Groupe(std::string nom_groupe){
     auto it = std::find(groupes_.begin(), groupes_.end(), nom_groupe);
     if (it != groupes_.end()){
         cout << "Groupe trouver : Suppresion"<< endl;
         groupes_.erase(it);
     }else
         cout << "Ce groupe n'est pas dans le cortege\n";
-} 
+} */
 
 /// @brief accés à une personne à partir dans son id; renvoie l'@ de la personne si elle existe, nullptr sinon
 /// @param id    
@@ -58,26 +58,18 @@ void Cortege :: delete_personne(int id){
         cout << "La personne n'est dans aucun groupe du cortège" << endl;
 } 
 
-/// @brief compare deux valeurs 
-/// @param i 
-/// @param j 
-/// @return retourne vrai si i<j et false sinon
-bool Cortege :: ordre_croissant(int i, int j){
-   return i < j;    // retourne 1 si i>j sinon 0
-}
 
 /// @brief trie par taille les groupes du cortège
 void Cortege :: tri_taille(){
-    /*sort(groupes_.begin(), groupes_.end(), []( Groupe& g1,  Groupe& g2){
+    sort(groupes_.begin(), groupes_.end(), []( Groupe& g1,  Groupe& g2){
             return g1.gettaille() < g2.gettaille();
-    });*/
-    sort(groupes_.begin(), groupes_.end(), ordre_croissant);
+    });
 }
+
 
 
 /// @brief trie par couleur les groupes du cortège
 void Cortege :: tri_couleur(){
-
     sort(groupes_.begin(), groupes_.end(), []( Groupe& g1,  Groupe& g2){
             return g1.getCouleur().nom() < g2.getCouleur().nom();
     });

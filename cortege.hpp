@@ -19,7 +19,6 @@ class Cortege {
         Personne* getPersonne(int id); //accés à une personne à partir dans son id
         void delete_personne(int id); //suppresion d'une personne à  partir de son id
         void tri_couleur(); //trier par couleur les groupes 
-        bool ordre_croissant(int i, int j);
         void tri_taille(); //trier par taille les groupes
 
         typedef std::vector<Groupe>::iterator iterator;
