@@ -41,6 +41,14 @@ void lecture_fichier_prenoms(set<std::string>& ens)
 ////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+   Cortege c = Cortege("amina");
+   Personne p = Personne("lina");
+
+   
+   
+   
+   
+   /*
    // initialisation du générateur de nombres aléatoires
    srand(time(0));
 
@@ -53,7 +61,8 @@ int main()
    fcor.open("declaration.csv", ios::in);
    std::string line, nom, couleur, str, sujet;
    int taille;
-   
+    
+    
    getline(fcor, sujet);
 
    // TODO : création d'un cortège
@@ -74,6 +83,6 @@ int main()
    fcor.close();
    
    // TODO
-
+*/
    return 0;
 }

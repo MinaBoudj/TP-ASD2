@@ -32,10 +32,10 @@ class Groupe {
         Groupe(std::string nom, Couleur couleur, int taille);   //création d'un groupe vide
         ~Groupe();  //distruction du groupe
         int gettaille(); //retourne la taille de la liste
-
+        Couleur getCouleur();
         /** accès à une personne à partir de son identifiant
          * précondition : la personne est dans la liste */
-        Personne getPersonne(int id);  
+        Personne* getPersonne(int id);  
 
         /** accès au leader
          * précondition : la liste n'est pas vide */
@@ -49,6 +49,7 @@ class Groupe {
 
         //supprime la premiere personne(leader)
         void suprimerPremierePersonne();
+        
         typedef std::list<Personne>::iterator iterator;
         
 };

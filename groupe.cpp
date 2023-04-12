@@ -17,12 +17,16 @@ int Groupe :: gettaille() {
     return taille;
 }
 
+Couleur Groupe :: getCouleur(){
+    return this->couleur_;
+}
+
 Groupe :: ~Groupe(){
     cout << "fin" << endl;
 }
 
-Personne Groupe :: getPersonne(int id){ 
-    return mapPersonne.at(id)->info;
+Personne* Groupe :: getPersonne(int id){ //demander si dans la map il renvoie nullptr s'il l trouve pas
+    return &mapPersonne.at(id)->info;
 }
 
 Personne Groupe :: getleader(){
