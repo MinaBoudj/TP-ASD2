@@ -41,14 +41,7 @@ void lecture_fichier_prenoms(set<std::string>& ens)
 ////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-   Cortege c = Cortege("amina");
-   Personne p = Personne("lina");
-
    
-   
-   
-   
-   /*
    // initialisation du générateur de nombres aléatoires
    srand(time(0));
 
@@ -78,11 +71,12 @@ int main()
       cout << nom << ';' << couleur << ';' << taille << endl;
 
       // TODO : création des groupes
+      // Personne p = Personne(choisir_prenom(ens_prenom));
       // appeler choisir_prenom(ens_prenom) pour choisir un prénom
    }
    fcor.close();
    
    // TODO
-*/
+
    return 0;
 }
