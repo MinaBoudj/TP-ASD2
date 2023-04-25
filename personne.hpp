@@ -7,10 +7,9 @@ struct Position{
     int y;
 };
 
-int id = 1;
-
 class Personne {
     private:
+        static int id;
         std::string name;
         int identifiant;
         Position position;

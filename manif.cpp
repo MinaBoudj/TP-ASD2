@@ -74,7 +74,7 @@ void Manif::simulationEtape() {
             }
         }
     }
-    /*
+   /* 
     // Faire avancer les 5 premières personnes du cortège sur la première ligne
     ListPersonne& LPersonne = cortege_.get_list_personne();
     maillon* p = LPersonne.premier;

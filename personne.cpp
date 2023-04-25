@@ -3,6 +3,7 @@
 
 using namespace std; 
 
+int Personne :: id = 1;
 Personne :: Personne(string name){
     name = name;
     identifiant = id;

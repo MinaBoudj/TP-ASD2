@@ -5,8 +5,8 @@
 
 class Manif {
     private :
-        int largeur_;
-        int longueur_;
+        int largeur_; 
+        int longueur_; 
         int nbManifestant = -1; //nombre de personne dans la grille
         int nbEtape = 0;
         std::vector<std::vector<Personne*>> grille_; //pair<Personne,Couleur>>
