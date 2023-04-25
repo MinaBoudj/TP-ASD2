@@ -13,6 +13,10 @@ Cortege :: Cortege(std::string nom): nom_cortege_(nom){}
 Cortege::~Cortege(){
     cout << "fin" << endl;
 }
+///@brief retourne les groupes
+vector<Groupe> Cortege :: get_groupes(){
+    return groupes_;
+}
 
 /// @brief insertion d'un groupe dans le cortege
 /// @param groupe 
@@ -22,14 +26,20 @@ void Cortege :: insert_Groupe(Groupe groupe){
 
 /// @brief suppression du groupe à partir de son nom
 /// @param nom_groupe 
-/*void Cortege ::delete_Groupe(std::string nom_groupe){
-    auto it = std::find(groupes_.begin(), groupes_.end(), nom_groupe);
+void Cortege ::delete_Groupe(string nom_groupe){
+    //auto it = find(groupes_.begin(), groupes_.end(), nom_groupe);
+   auto it = find_if(groupes_.begin(), groupes_.end(), [nom_groupe](Groupe& groupe){
+        return groupe.get_nom() == nom_groupe;
+    });
+
+
     if (it != groupes_.end()){
         cout << "Groupe trouver : Suppresion"<< endl;
         groupes_.erase(it);
     }else
         cout << "Ce groupe n'est pas dans le cortege\n";
-} */
+    
+} 
 
 /// @brief accés à une personne à partir dans son id; renvoie l'@ de la personne si elle existe, nullptr sinon
 /// @param id    
@@ -75,4 +85,12 @@ void Cortege :: tri_couleur(){
     });
 }
 
+
+void Cortege :: afficher_cortege(){
+    iterator it = groupes_.begin();
+    while(it != groupes_.end()){
+        (*it).afficher_groupe();
+        ++it;
+    }
+}
 

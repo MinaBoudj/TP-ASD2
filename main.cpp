@@ -59,6 +59,10 @@ int main()
    getline(fcor, sujet);
 
    // TODO : création d'un cortège
+   vector<Groupe> groupe_;
+   Cortege cortege = Cortege("N°1");
+
+
 
    while (fcor >> line)
    {
@@ -71,7 +75,9 @@ int main()
       cout << nom << ';' << couleur << ';' << taille << endl;
 
       // TODO : création des groupes
-      // Personne p = Personne(choisir_prenom(ens_prenom));
+      //Personne p1 = Personne(choisir_prenom(ens_prenom));
+      Groupe groupe1 = Groupe("Losers", Couleur :: NOIR, 3);
+      groupe1.insererPersonne(choisir_prenom(ens_prenom));
       // appeler choisir_prenom(ens_prenom) pour choisir un prénom
    }
    fcor.close();

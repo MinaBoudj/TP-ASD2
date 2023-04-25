@@ -7,8 +7,9 @@ class Manif {
     private :
         int largeur_;
         int longueur_;
-        int nbManifestant = 0;
-        std::vector<std::vector<char>> grille_; //pair<Personne,Couleur>>
+        int nbManifestant = -1; //nombre de personne dans la grille
+        int nbEtape = 0;
+        std::vector<std::vector<Personne*>> grille_; //pair<Personne,Couleur>>
         Cortege cortege_;    //le cortege de la manif
 
     public :
@@ -16,9 +17,12 @@ class Manif {
         ~Manif();  //distruction de la manif
         void simulationEtape(); //simulation d'une étape(verifier qu'il y'a au moins une Personne dans la grille)
         bool testFin(); //quand la grille est vide
-        Personne* getPersonne(); //accès à une personne à partir de son identifiant
+        Personne* getPersonne(int id); //accès à une personne à partir de son identifiant
+        Groupe* get_Groupe(int id); //accés au groupe de la personne
         void supprimerPersonne(int id); //suppression d’une personne à partir de son identifiant
         Personne* leaders(); //accès à l’ensemble des leaders en train de défiler
+        void affciher_grille();//afficher la grille de la maniff
+        typedef std::vector<Groupe>::iterator iterator;
 
 };
 

@@ -33,6 +33,10 @@ class Groupe {
         ~Groupe();  //distruction du groupe
         int gettaille(); //retourne la taille de la liste
         Couleur getCouleur();
+        std::string get_nom();
+
+        ListPersonne get_LPersonne();
+
         /** accès à une personne à partir de son identifiant
          * précondition : la personne est dans la liste */
         Personne* getPersonne(int id);  
@@ -50,6 +54,7 @@ class Groupe {
         //supprime la premiere personne(leader)
         void suprimerPremierePersonne();
         
+        void afficher_groupe();//afficher les personnes du groupe
         typedef std::list<Personne>::iterator iterator;
         
 };

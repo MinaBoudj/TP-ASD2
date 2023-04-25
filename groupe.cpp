@@ -21,6 +21,14 @@ Couleur Groupe :: getCouleur(){
     return this->couleur_;
 }
 
+string Groupe :: get_nom(){
+    return this->nom_groupe;
+}
+
+ListPersonne Groupe :: get_LPersonne(){
+    return LPersonne;
+}
+
 Groupe :: ~Groupe(){
     cout << "fin" << endl;
 }
@@ -97,4 +105,14 @@ void Groupe :: suprimerPremierePersonne(){
             mapPersonne.erase(tmp->info.getId()); //suppression dans la map
         }
     delete tmp;
+}
+
+void Groupe :: afficher_groupe(){
+    maillon* tmp = LPersonne.premier;
+    cout << "Groupe " << nom_groupe << " : "  << endl;
+    while(tmp != nullptr){
+        tmp->info.afficherPersonne();
+        tmp = tmp->suivant;
+    }
+    
 }
