@@ -5,16 +5,15 @@
 
 using namespace std;
 
-Groupe :: Groupe(std::string nom, Couleur couleur, int taille): couleur_(couleur), mapPersonne(){
+Groupe :: Groupe(std::string nom, Couleur couleur, int taille): couleur_(couleur),taille_(taille), mapPersonne(){
     nom_groupe = nom;
-    taille = taille;
     LPersonne.dernier = nullptr;
     LPersonne.premier = nullptr;
     LPersonne.nb = 0;
 }
 
 int Groupe :: gettaille() {  
-    return taille;
+    return this->taille_;
 }
 
 Couleur Groupe :: getCouleur(){
@@ -30,24 +29,27 @@ ListPersonne Groupe :: get_LPersonne(){
 }
 
 Groupe :: ~Groupe(){
-    cout << "fin" << endl;
 }
 
 Personne* Groupe :: getPersonne(int id){ //demander si dans la map il renvoie nullptr s'il l trouve pas
-    return &mapPersonne.at(id)->info;
+    auto it = mapPersonne.find(id);
+    if (it != mapPersonne.end()) {
+        return &mapPersonne.at(id)->info;
+    } else {
+        return nullptr;
+    }
 }
 
 Personne Groupe :: getleader(){
    return LPersonne.premier->info;
 }
 
-void Groupe :: insererPersonne(std::string nom){  
-    Personne* p = new Personne(nom);
-    maillon* tmp;
+void Groupe :: insererPersonne(std::string nom){ 
+    Personne* p = new Personne(nom);    
+    maillon* tmp = new maillon;
     tmp->info = *p;
     tmp->suivant = nullptr;
     tmp->precedent = LPersonne.dernier;
-    LPersonne.nb++;
     if(LPersonne.nb == 0 ){//liste vide
         LPersonne.premier = tmp;
         LPersonne.dernier = tmp;

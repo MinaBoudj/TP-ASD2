@@ -62,8 +62,7 @@ int main()
    vector<Groupe> groupe_;
    Cortege cortege = Cortege("N°1");
 
-
-
+  
    while (fcor >> line)
    {
       istringstream is(line);
@@ -76,13 +75,31 @@ int main()
 
       // TODO : création des groupes
       //Personne p1 = Personne(choisir_prenom(ens_prenom));
-      Groupe groupe1 = Groupe("Losers", Couleur :: NOIR, 3);
-      groupe1.insererPersonne(choisir_prenom(ens_prenom));
+     
       // appeler choisir_prenom(ens_prenom) pour choisir un prénom
    }
    fcor.close();
    
-   // TODO
+   Groupe groupe1 = Groupe("Losers", Couleur :: NOIR, 3);
+   groupe1.insererPersonne(choisir_prenom(ens_prenom));
+   groupe1.insererPersonne(choisir_prenom(ens_prenom));
+   groupe1.insererPersonne(choisir_prenom(ens_prenom));
 
+   Groupe groupe2 = Groupe("Winners", Couleur::BLANC, 4);
+   groupe2.insererPersonne(choisir_prenom(ens_prenom));
+   groupe2.insererPersonne(choisir_prenom(ens_prenom));
+   groupe2.insererPersonne(choisir_prenom(ens_prenom));
+   groupe2.insererPersonne(choisir_prenom(ens_prenom));
+
+
+   cortege.insert_Groupe(groupe1);
+   cortege.insert_Groupe(groupe2);
+   cortege.afficher_cortege();
+
+   // TODO
+   Manif manif = Manif(7, 5, cortege);
+   manif.leaders();
+   manif.simulationEtape();
+   manif.afficher_grille();
    return 0;
 }

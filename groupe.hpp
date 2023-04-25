@@ -8,6 +8,7 @@
 
 //SDA :List(Personne) est le type des Listes de type Personne 
 struct maillon{
+    maillon() : info(""), suivant(nullptr), precedent(nullptr) {}
     Personne info;
     maillon* suivant;
     maillon* precedent;
@@ -18,13 +19,12 @@ struct ListPersonne{
     maillon* dernier;
     int nb;
 };
-
 class Groupe {  
     
     private : 
         std::string nom_groupe;
         Couleur couleur_;
-        int taille;
+        int taille_;
         ListPersonne LPersonne;
         std::unordered_map<int, maillon*> mapPersonne;   //la clé c'est l'id 
 

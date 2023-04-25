@@ -11,7 +11,6 @@ Cortege :: Cortege(std::string nom): nom_cortege_(nom){}
 
 /// @brief distructeur
 Cortege::~Cortege(){
-    cout << "fin" << endl;
 }
 ///@brief retourne les groupes
 vector<Groupe> Cortege :: get_groupes(){
@@ -87,9 +86,11 @@ void Cortege :: tri_couleur(){
 
 
 void Cortege :: afficher_cortege(){
+    cout << endl;
     iterator it = groupes_.begin();
     while(it != groupes_.end()){
         (*it).afficher_groupe();
+        cout << endl;
         ++it;
     }
 }

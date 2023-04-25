@@ -8,6 +8,7 @@ struct Position{
 };
 
 class Personne {
+    
     private:
         static int id;
         std::string name;
