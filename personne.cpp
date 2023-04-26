@@ -13,7 +13,7 @@ Personne :: Personne(string name){
 }
 
 string Personne :: getName() const{
-    return this->name;
+    return name;
 }
 
 int Personne :: getId() const{

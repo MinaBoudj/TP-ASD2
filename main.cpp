@@ -98,7 +98,30 @@ int main()
 
    // TODO
    Manif manif = Manif(7, 5, cortege);
+
    manif.leaders();
+
+   manif.simulationEtape();
+   manif.afficher_grille();
+
+   manif.simulationEtape();
+   manif.afficher_grille();
+
+   manif.simulationEtape();
+   manif.afficher_grille();
+
+   manif.simulationEtape();
+   manif.afficher_grille();
+
+   manif.simulationEtape();
+   manif.afficher_grille();
+
+   manif.simulationEtape();
+   manif.afficher_grille();
+
+   manif.simulationEtape();
+   manif.afficher_grille();
+
    manif.simulationEtape();
    manif.afficher_grille();
    return 0;

@@ -5,8 +5,7 @@
 
 using namespace std;
 
-Groupe :: Groupe(std::string nom, Couleur couleur, int taille): couleur_(couleur),taille_(taille), mapPersonne(){
-    nom_groupe = nom;
+Groupe :: Groupe(std::string nom, Couleur couleur, int taille): nom_groupe(nom),couleur_(couleur),taille_(taille), mapPersonne(){
     LPersonne.dernier = nullptr;
     LPersonne.premier = nullptr;
     LPersonne.nb = 0;
@@ -40,14 +39,15 @@ Personne* Groupe :: getPersonne(int id){ //demander si dans la map il renvoie nu
     }
 }
 
+
 Personne Groupe :: getleader(){
-   return LPersonne.premier->info;
+    return LPersonne.premier->info;
 }
 
 void Groupe :: insererPersonne(std::string nom){ 
-    Personne* p = new Personne(nom);    
+    Personne p =  Personne(nom);    
     maillon* tmp = new maillon;
-    tmp->info = *p;
+    tmp->info = p;
     tmp->suivant = nullptr;
     tmp->precedent = LPersonne.dernier;
     if(LPersonne.nb == 0 ){//liste vide
@@ -59,7 +59,7 @@ void Groupe :: insererPersonne(std::string nom){
         LPersonne.dernier = tmp;
         LPersonne.nb++;
     }
-    mapPersonne.insert(pair<int,maillon*>(p->getId(),tmp));
+    mapPersonne.insert(pair<int,maillon*>(p.getId(),tmp));
 }
 
 void Groupe :: supprimerPersonne(int id){  
@@ -95,7 +95,6 @@ void Groupe :: suprimerPremierePersonne(){
     if(LPersonne.nb == 0)
         cout << "ERREUR : Liste vide " << endl;
     else if(LPersonne.nb == 1){  //si un seul maillon(premier = dernier)
-            tmp = LPersonne.premier;
             LPersonne.premier = nullptr;
             LPersonne.dernier = nullptr;
             LPersonne.nb--;  
@@ -106,7 +105,7 @@ void Groupe :: suprimerPremierePersonne(){
             LPersonne.nb--;  
             mapPersonne.erase(tmp->info.getId()); //suppression dans la map
         }
-    delete tmp;
+    //delete tmp;
 }
 
 void Groupe :: afficher_groupe(){

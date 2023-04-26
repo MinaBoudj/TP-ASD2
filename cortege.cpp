@@ -50,6 +50,7 @@ Personne* Cortege :: getPersonne(int id){
     return nullptr; 
 }
 
+
 /// @brief suppresion d'une personne à  partir de son id
 /// @param id 
 void Cortege :: delete_personne(int id){

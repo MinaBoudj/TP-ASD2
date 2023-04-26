@@ -23,7 +23,7 @@ class Manif {
         void supprimerPersonne(int id); //suppression d’une personne à partir de son identifiant
         void leaders(); //accès à l’ensemble des leaders en train de défiler
         void afficher_grille();//afficher la grille de la maniff
-        //typedef std::vector<Groupe>::iterator iterator;
+        typedef std::vector<Groupe>::iterator iterator;
 
 };
 
