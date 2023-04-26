@@ -30,29 +30,32 @@ void Manif :: simulationEtape(){
     if(nbManifestant == 0){//vérification de la grille non vide
         cout << "Erreur : Grille vide Fin de la simulation" << endl;
     }else{
-        //TODO
         if(nbEtape == 0){ //la premiere etape
             vector<Groupe> groupes = cortege_.get_groupes();
             auto it = groupes.begin();
-            maillon* tmp = it->get_LPersonne().premier;
+            ListPersonne tmp = it->get_LPersonne();
             nbManifestant = 0;
             int cpt = 0;
-            while(tmp != nullptr && nbManifestant <= largeur_){
-                grille_[longueur_-1][nbManifestant] = &(tmp->info);
+            while(tmp.premier != nullptr && nbManifestant <= largeur_){
+                grille_[longueur_-1][nbManifestant] = &(tmp.premier->info);
+                tmp.premier->info.setPosition(longueur_-1, nbManifestant);
                 nbManifestant ++;
-                tmp = tmp->suivant;
+                tmp.premier = tmp.premier->suivant;
+                //tmp = tmp->suivant;
                 cpt++;
                 if(cpt == (*it).gettaille()){
                     ++it;
                     cpt = 0;
-                    tmp = (*it).get_LPersonne().premier;
+                    tmp = (*it).get_LPersonne();
                 }
             }
             nbEtape++;
             nbManifestant -- ;
             cout << "nbManifestant :" << nbManifestant << ", nbEtape : " << nbEtape << endl;
         }else{
+            //TODO
             cout << "Etape 2 " << endl;
+            
             //verifier que etape == largeur-1 pour sortir les personnes
             // avancer les personnes 
         }

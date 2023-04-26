@@ -24,6 +24,11 @@ Position Personne :: getPosition() const{
     return this->position;
 }
 
+void Personne :: setPosition(int x, int y){
+    this->position.x = x;
+    this->position.y = y;
+}
+
 void Personne :: afficherPersonne(){
     cout << "Nom : " << getName() << ", id : " << getId() << ", position : " << getPosition().x << "," << getPosition().y <<endl;
 }
