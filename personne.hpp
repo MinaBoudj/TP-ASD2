@@ -19,6 +19,7 @@ class Personne {
         Personne(std::string name);
         std::string getName() const;
         int getId() const;
+        std::string get_initial();
         Position getPosition()const;
         void setPosition(int x, int y);
         void afficherPersonne();

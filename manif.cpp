@@ -172,7 +172,8 @@ void Manif :: afficher_grille(){
             else{
                 Groupe* groupe = get_Groupe(grille_[i][j]->getId());
                 std::cout << grille_[i][j]->getName()[0] << " " ;
-                //groupe->getCouleur().afficher(std::cout, grille_[i][j]->getName());
+
+                //groupe->getCouleur().afficher(std::cout, grille_[i][j]->get_initial());
             }
         }
         std::cout << std::endl;;

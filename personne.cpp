@@ -33,3 +33,6 @@ void Personne :: afficherPersonne(){
     cout << "Nom : " << getName() << ", id : " << getId() << ", position : " << getPosition().x << "," << getPosition().y <<endl;
 }
 
+std::string Personne :: get_initial(){
+    return (const std::basic_string<char>&) getName().at(0);
+}
