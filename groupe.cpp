@@ -6,6 +6,7 @@
 using namespace std;
 
 Groupe :: Groupe(std::string nom, Couleur couleur, int taille): nom_groupe(nom),couleur_(couleur),taille_(taille), mapPersonne(){
+    couleur.creer(couleur.nom());
     LPersonne.dernier = nullptr;
     LPersonne.premier = nullptr;
     LPersonne.nb = 0;

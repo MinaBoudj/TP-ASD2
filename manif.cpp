@@ -1,7 +1,6 @@
 #include "manif.hpp"
 #include<iostream>
 
-using namespace std;
 
 /// @brief constructeur d'une manif vide
 /// @param longeur
@@ -14,20 +13,32 @@ Manif :: Manif(int longeur, int largeur, Cortege cortege) : longueur_(longeur), 
 
 /// @brief distructeur
 Manif::~Manif(){
-    cout << "fin" << endl;
+    std::cout << "fin" << std::endl;
 }
 
+/// @brief recuperer le cortege
+/// @return cortege_
 Cortege Manif :: get_Cortege(){
     return this->cortege_;
 }
 
 /// @brief simulation d'une étape(verifier qu'il y'a au moins une Personne dans la grille)
 void Manif :: simulationEtape(){
-    if(nbManifestant == 0){//vérification de la grille non vide
-        cout << "Erreur : Grille vide Fin de la simulation" << endl;
+    if(testFin()){//vérification de la grille non vide
+        std::cout << "\nEtape "<< nbEtape++  << " :";
+        for(int i = 0; i<1; i++){
+            int j = 0;
+            while(grille_[i][j] != nullptr){
+                grille_[i][j]->setPosition(0,0);
+                grille_[i][j] = nullptr;
+                j++;
+            }
+        }
+        std::cout << "Fin de simulation : Grille vide : "<< std::endl;
     }else{
         if(nbEtape == 0){ //la premiere etape
-            vector<Groupe> groupes = cortege_.get_groupes();
+            std::cout << "\nEtape "<< nbEtape  << " :";
+            std::vector<Groupe> groupes = cortege_.get_groupes();
             iterator it = groupes.begin();
             ListPersonne tmp = it->get_LPersonne();
             nbManifestant = 0;
@@ -44,49 +55,61 @@ void Manif :: simulationEtape(){
             nbEtape++;
             nbManifestant -- ;
             tmp.premier = tmp.dernier->precedent;
-            cout << "nbManifestant : " << nbManifestant << ", nbEtape : " << nbEtape << endl;
         }else{
+            std::cout << "\nEtape "<< nbEtape  << " :" <<std::endl;
             nbEtape++;
-            cout << "\nEtape "<< nbEtape ;
-            if(nbEtape == longueur_+1){//verifier que etape == largeur-1 pour sortir les personnes
-                //TODO
-                cout << "ici" << endl;
+            
+            //trouver la positiion ou ce trouve la personne suivante à ajouter dans la grille 
+            std::vector<Groupe> groupes = cortege_.get_groupes();
+            iterator it = groupes.begin();
+            ListPersonne tmp = it->get_LPersonne();
+            int cpt =0;
+            while(it != groupes.end() && cpt < nbManifestant){
+                cpt ++;
+                tmp.premier = tmp.premier->suivant;
+                if(tmp.premier == nullptr){
+                    ++it;
+                    tmp = (*it).get_LPersonne();
+                }
+            }
+            if(grille_[0][0] != nullptr){//verifier que etape == largeur-1 pour sortir les personnes
+                // sortir les personnes de la derniere ligne de la manif
+                int nbligne = nbManifestant/largeur_; 
+                nbManifestant = nbManifestant - largeur_;
+                for(int i = 0; i<nbligne; i++){
+                    int j=0;
+                    while(grille_[i][j] != nullptr){
+                        grille_[i][j]->setPosition(0,0);
+                        grille_[i][j] = grille_[i+1][j];
+                        grille_[i+1][j] = nullptr;
+                        j++;
+                    }
+                }
+                if(nbManifestant <=largeur_)
+                    nbManifestant = 0;
             }else{
-
-                // avancer les personnes si le cortege n'est pas vide
-                for(int i = longueur_-nbEtape; i<longueur_-1; i++){
+                // avancer les personnes de la grille
+                for(int i = 0; i<longueur_-1; i++){
                     for(int j=0; j<largeur_; j++){
                         grille_[i][j] = grille_[i+1][j];
                         grille_[i+1][j] = nullptr;
                     }
                 }
                 
-                //ajouter les personnes si y'en a encore
-                vector<Groupe> groupes = cortege_.get_groupes();
-                iterator it = groupes.begin();
-                ListPersonne tmp = it->get_LPersonne();
-                int cpt =0;
-                while(it != groupes.end() && cpt < nbManifestant){
-                    cpt ++;
-                    tmp.premier = tmp.premier->suivant;
-                    if(tmp.premier == nullptr){
-                        ++it;
-                        tmp = (*it).get_LPersonne();
-                    }
+            }
+            //ajouter les personnes si y'en a encore
+            cpt =0;
+            while(it != groupes.end() && cpt < largeur_){
+                grille_[longueur_-1][cpt] = &(tmp.premier->info);
+                tmp.premier->info.setPosition(longueur_-1, nbManifestant);
+                cpt ++;
+                nbManifestant++;
+                tmp.premier = tmp.premier->suivant;
+                if(tmp.premier == nullptr){
+                    ++it;
+                    tmp = (*it).get_LPersonne();
                 }
-                cpt =0;
-                while(tmp.premier != nullptr && cpt <= largeur_){
-                    grille_[longueur_-1][cpt] = &(tmp.premier->info);
-                    tmp.premier->info.setPosition(longueur_-1, nbManifestant);
-                    cpt ++;
-                    nbManifestant++;
-                    tmp.premier = tmp.premier->suivant;
-                    if(tmp.premier == nullptr){
-                        ++it;
-                        tmp = (*it).get_LPersonne();
-                    }
-                }
-            }                   
+            }
         }
     }
 }
@@ -96,8 +119,8 @@ void Manif :: simulationEtape(){
 /// @brief tester si c'est la fin de la manif; quand la grille est vide donc plus personne dans le cortege
 /// @return true si tous les groupes du cortege on défilé, false sinon
 bool Manif :: testFin(){
-    return cortege_.get_groupes().size() == 0;
-    //nbManifestant == 0
+    //return cortege_.get_groupes().size() == 0;
+    return nbManifestant == 0 ;
 }
 
 /// @brief accés à une personne à partir de son identifiant
@@ -113,17 +136,18 @@ void Manif :: supprimerPersonne(int id){
     cortege_.delete_personne(id);
 }
 
+/// @brief 
 void  Manif :: leaders(){
     int i =0;
     if(cortege_.get_groupes().size() == 0){//pas de manifestant 
-        cout << "Erreur : cortege vide" << endl;
+        std::cout << "Erreur : cortege vide" << std::endl;
     }else{
-        vector<Groupe> groupes = cortege_.get_groupes();
-        cout << "Leaders :: " ;
+        std::vector<Groupe> groupes = cortege_.get_groupes();
+        std::cout << "Leaders :: " ;
         for (auto it = groupes.begin(); it != groupes.end(); ++it) {
-            cout << (*it).getleader().getName() << ", ";
+            std::cout << (*it).getleader().getName() << ", ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 
@@ -139,19 +163,19 @@ Groupe* Manif :: get_Groupe(int id){
 }
 
 void Manif :: afficher_grille(){
-    cout << endl;
+    std::cout << std::endl;
     for(int i=0; i<longueur_; i++){
-        cout << " " ;
+        std::cout << " " ;
         for(int j=0; j<largeur_; j++){
             if(grille_[i][j]== nullptr)
-                cout << "- ";
+                std::cout << "- ";
             else{
                 Groupe* groupe = get_Groupe(grille_[i][j]->getId());
-                cout << grille_[i][j]->getName()[0] << " " ;
-                //groupe->getCouleur().afficher(cout, grille_[i][j]->getName());
+                std::cout << grille_[i][j]->getName()[0] << " " ;
+                //groupe->getCouleur().afficher(std::cout, grille_[i][j]->getName());
             }
         }
-        cout << endl;;
+        std::cout << std::endl;;
     }
     
 }

@@ -80,17 +80,18 @@ int main()
    }
    fcor.close();
    
-   Groupe groupe1 = Groupe("Losers", Couleur :: NOIR, 3);
+   Groupe groupe1 = Groupe("electro", Couleur :: VERT, 4);
+   groupe1.insererPersonne(choisir_prenom(ens_prenom));
    groupe1.insererPersonne(choisir_prenom(ens_prenom));
    groupe1.insererPersonne(choisir_prenom(ens_prenom));
    groupe1.insererPersonne(choisir_prenom(ens_prenom));
 
-   Groupe groupe2 = Groupe("Winners", Couleur::BLANC, 4);
+   Groupe groupe2 = Groupe("hip-hop", Couleur::MAGENTA, 5);
    groupe2.insererPersonne(choisir_prenom(ens_prenom));
    groupe2.insererPersonne(choisir_prenom(ens_prenom));
    groupe2.insererPersonne(choisir_prenom(ens_prenom));
    groupe2.insererPersonne(choisir_prenom(ens_prenom));
-
+   groupe2.insererPersonne(choisir_prenom(ens_prenom));
 
    cortege.insert_Groupe(groupe1);
    cortege.insert_Groupe(groupe2);
@@ -124,5 +125,10 @@ int main()
 
    manif.simulationEtape();
    manif.afficher_grille();
+   
+   manif.simulationEtape();
+   manif.afficher_grille();
+
+   
    return 0;
 }
