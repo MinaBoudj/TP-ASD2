@@ -22,6 +22,7 @@ Cortege Manif :: get_Cortege(){
     return this->cortege_;
 }
 
+
 /// @brief simulation d'une étape(verifier qu'il y'a au moins une Personne dans la grille)
 void Manif :: simulationEtape(){
     if(testFin()){//vérification de la grille non vide
