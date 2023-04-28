@@ -29,7 +29,7 @@ void Manif :: simulationEtape(){
         std::cout << "\nEtape "<< nbEtape++  << " :";
         for(int i = 0; i<1; i++){
             int j = 0;
-            while(grille_[i][j] != nullptr){
+            while(j<largeur_ && grille_[i][j] != nullptr){
                 grille_[i][j]->setPosition(0,0);
                 grille_[i][j] = nullptr;
                 j++;
@@ -79,7 +79,7 @@ void Manif :: simulationEtape(){
                 nbManifestant = nbManifestant - largeur_;
                 for(int i = 0; i<nbligne; i++){
                     int j=0;
-                    while(grille_[i][j] != nullptr){
+                    while(j<largeur_ && grille_[i][j] != nullptr){
                         grille_[i][j]->setPosition(0,0);
                         grille_[i][j] = grille_[i+1][j];
                         grille_[i+1][j] = nullptr;
@@ -139,7 +139,6 @@ void Manif :: supprimerPersonne(int id){
 
 /// @brief 
 void  Manif :: leaders(){
-    int i =0;
     if(cortege_.get_groupes().size() == 0){//pas de manifestant 
         std::cout << "Erreur : cortege vide" << std::endl;
     }else{
@@ -175,6 +174,7 @@ void Manif :: afficher_grille(){
                 std::cout << grille_[i][j]->getName()[0] << " " ;
 
                 //groupe->getCouleur().afficher(std::cout, grille_[i][j]->get_initial());
+                //std::cout << " ";
             }
         }
         std::cout << std::endl;;

@@ -34,5 +34,6 @@ void Personne :: afficherPersonne(){
 }
 
 std::string Personne :: get_initial(){
-    return (const std::basic_string<char>&) getName().at(0);
+    //return (const std::basic_string<char>&) getName().at(0);
+    return std::string(1, name.at(0));
 }
